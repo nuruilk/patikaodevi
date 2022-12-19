@@ -17,3 +17,30 @@ def liste_ters_cevir(l):
             ters_cevirilmis_liste.append(eleman)
 
     return ters_cevirilmis_liste
+    
+    
+    def liste_duzlestir(l):
+    """Bu fonksiyon, verilen listeyi düzleştirir"""
+    # Özel bir durum olarak boş listeyi döndürün
+    if not l:
+        return []
+
+    # Düzleştirilecek listeyi oluşturun
+    duzlestirilmis_liste = []
+
+    # Listeyi dolaşın ve her elemanı düzleştirilmiş listeye ekleyin
+    for eleman in l:
+        if isinstance(eleman, list):
+            # Eleman bir liste ise, içindeki elemanları düzleştirilmiş listeye ekleyin
+            duzlestirilmis_liste.extend(liste_duzlestir(eleman))
+        else:
+            # Eleman bir liste değilse, düzleştirilmiş listeye ekleyin
+            duzlestirilmis_liste.append(eleman)
+
+    return duzlestirilmis_liste
+
+
+# Fonksiyonu kullanma
+l = [[1, 2, [True,3, 4]], [5, 6], [7,False], [8, [9, [10]]]]
+sonuc = liste_duzlestir(l)
+print(f"Sonuç: {sonuc}")
